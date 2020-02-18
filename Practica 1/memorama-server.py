@@ -43,95 +43,7 @@ class memorama:
     def mostrar_tablero(self):
         for i in self.tablero_oculto:
             print(i)
-    """
-    def tirada(self, jugador,tirada_1,tirada_2):
-        error = False
-        while True and self.cont != 0:
-            while True:
-                try:
-                    print("TURNO DE: {}\n\n".format(jugador.nombre))
-                    self.mostrar_tablero()
-                    x1 = x2 = int(tirada_1[0])
-                    y1 = y2 = int(tirada_2[1])
-                    if self.tablero_oculto[x1][y1] != '*':
-                        x1 = int("/")
-                    self.tablero_oculto[x1][y1] = self.tablero[x1][y1]
-                    break
-                except ValueError:
-                    os.system("cls")
-                    print("Valor no valido.")
-                    error = True
-                except IndexError:
-                    os.system("cls")
-                    print("El tablero no es tan grande")
-                    error = True
 
-            while ((x1 == x2) and (y1 == y2)):
-                os.system("cls")
-                if error:
-                    break
-                while True:
-                    try:
-                        print("TURNO DE: {}\n\n".format(jugador.nombre))
-                        self.mostrar_tablero()
-                        x2 = int(input("x2: "))
-                        y2 = int(input("y2: "))
-                        if self.tablero_oculto[x2][y2] != '*':
-                            x2 = int("/")
-                        self.tablero_oculto[x2][y2] = self.tablero[x2][y2]
-                        break
-                    except ValueError:
-                        os.system("cls")
-                        print("Valor introducido no valido")
-                    except IndexError:
-                        os.system("cls")
-                        print("El tablero no es tan grande")
-            self.mostrar_tablero()
-            if self.tablero[x1][y1] != self.tablero[x2][y2]:
-                self.tablero_oculto[x1][y1] = '*'
-                self.tablero_oculto[x2][y2] = '*'
-                break
-            else:
-                self.cont -= 1
-                jugador.puntos += 1
-                os.system("cls")
-        input("Enter para continuar")
-    
-    def tirada(self,jugador,tirada):
-        try:
-            x = int(tirada[0])
-            y = int(tirada[1])
-            if self.tablero_oculto[x][y] != '*':
-                        x = int("/")
-            self.tablero_oculto[x][y] = self.tablero[x][y]
-        except ValueError:
-            print("Casilla ya descubierta")
-            
-    def turno(self,jugador, conn):
-        tirada1 = tirada2 = ''
-        while True:
-            tirada1 = Client_conn.recv(1024).decode('utf8').split(',')
-            if tirada1:
-                break
-        self.tirada(jugador,tirada1)
-        enviar_tablero(conn,game)
-        while True:
-            tirada2 = Client_conn.recv(1024).decode('utf8').split(',')
-            if tirada2:
-                break
-        self.tirada(jugador,tirada2)
-        enviar_tablero(conn,game)
-        if self.tablero[int(tirada1[0])][int(tirada1[1])] != self.tablero[int(tirada2[0])][int(tirada2[1])]:
-            self.tablero_oculto[int(tirada1[0])][int(tirada1[1])] = '*'
-            self.tablero_oculto[int(tirada2[0])][int(tirada2[0])] = '*'
-        else:
-            self.cont -= 1
-            jugador.puntos += 1
-        enviar_tablero(conn,game)
-
-    def mostrar_puntuacion(self, player, pc):
-        print("##### PUNTUACION #####\n{}: {} puntos\n{}: {} puntos\n######################".format(player.nombre,player.puntos,pc.nombre,pc.puntos))
-"""
     def turno_jugador(self,socket,jugador):
         socket.send('4'.encode('utf8')) #E1 ENVIA QUE ES EL TURNO DEL JUGADOR
         socket.recv(1024).decode('utf8')
@@ -253,16 +165,3 @@ if __name__ == "__main__":
                     Client_conn.send('1'.encode('utf8'))
                 else:
                     Client_conn.send('2'.encode('utf8'))
-                
-                """
-                while True:
-                    pass
-                    
-                    print("Esperando a recibir datos... ")
-                    data = Client_conn.recv(buffer_size)
-                    print ("Recibido,", data,"   de ", Client_addr)
-                    if not data:
-                        break
-                    print("Enviando respuesta a", Client_addr)
-                    Client_conn.sendall(data)
-                    """

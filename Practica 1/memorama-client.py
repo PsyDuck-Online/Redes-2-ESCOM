@@ -1,7 +1,7 @@
 import socket
 import os
 
-HOST = "10.100.68.67"#input("Ingrese una direccion IP destino: ")
+HOST = "192.168.100.20"#input("Ingrese una direccion IP destino: ")
 PORT = 65432#int(input("Ingrese un numero de puerto valido: "))
 buffer_size = 1024
 
