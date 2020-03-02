@@ -132,4 +132,3 @@ class memorama:
         if self.tablero[int(self.t1[0])][int(self.t1[1])] != self.tablero[int(self.t2[0])][int(self.t2[1])]:
             self.tablero_oculto[int(self.t1[0])][int(self.t1[1])] = '*'
             self.tablero_oculto[int(self.t2[0])][int(self.t2[1])] = '*'
-

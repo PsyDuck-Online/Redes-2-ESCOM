@@ -143,19 +143,21 @@ game = memorama('1')
 lista_conexiones = []
 host = input("Inserte ip: ")
 port = int(input("Inserte el puerto: "))
+conexiones = int(input('Inserte numero de conexiones simultaneas: '))
 os.system('cls')
 data = ''
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print ("Socket Created")
 sock.bind((host, port))
 print ("socket bind complete")
-sock.listen(2)
+sock.listen(conexiones)
 print ("socket now listening")
 
 def actualizar(lista_conexiones,game):
     t = game.get_tablero_oculto()
     text = t.__str__().replace('], [','\n').replace('[[','').replace(']]','')
     text = text + '\n-------------------------------\n'
+    print('numero de conexiones: ',len(lista_conexiones))
     for conn in lista_conexiones:
         conn.send(text.encode('utf8'))
 
@@ -180,6 +182,7 @@ def cliente(*args):
         conn.close()
 
 while 1:
-    conn, addr = sock.accept()
-    lista_conexiones.append(conn)
-    threading.Thread(target=cliente, args=(conn, addr,game)).start()
+    if len(lista_conexiones) < conexiones:
+        conn, addr = sock.accept()
+        lista_conexiones.append(conn)
+        threading.Thread(target=cliente, args=(conn, addr,game)).start()
