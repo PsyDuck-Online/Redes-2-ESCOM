@@ -1,15 +1,11 @@
+#servidor
 import socket
+import threading
 import random
 import os
-import time
-import struct
-
-class jugador:
-    puntos = 0
-    def __init__(self,nombre):
-        self.nombre = nombre
-
 class memorama:
+    t1 = ''
+    t2 = ''
     def __init__(self, dificultad):
         self.dificultad = dificultad
         if dificultad == "1":
@@ -47,7 +43,7 @@ class memorama:
     def turno_jugador(self,socket,jugador):
         socket.send('4'.encode('utf8')) #E1 ENVIA QUE ES EL TURNO DEL JUGADOR
         socket.recv(1024).decode('utf8')
-        game.enviar_tablero(Client_conn)#E2 ENVIA EL TABLERO ACTUAL
+        self.enviar_tablero(socket)#E2 ENVIA EL TABLERO ACTUAL
         tirada1 = socket.recv(1024).decode('utf8').split(',')#R3 RECIBE LA PRIMER TIRADA
         print("TIRADA 1")
         x1 = int(tirada1[0])
@@ -123,45 +119,67 @@ class memorama:
             self.enviar_tablero(conn) #ENVIA EL TABLERO CON EL RESULTADO E4
             print('tirada pc')
 
-
     def enviar_tablero(self,socket_oirgen):
         text = self.tablero_oculto.__str__().replace('], [','\n').replace('[[','').replace(']]','')
         socket_oirgen.send(text.encode('utf8'))
+    def tirada1(self,tirada):
+        self.t1 = tirada.split(',')
+        x1 = int(self.t1[0])
+        y1 = int(self.t1[1])
+        self.tablero_oculto[x1][y1] = self.tablero[x1][y1]
+    def tirada2(self,tirada):
+        self.t2 = tirada.split(',')
+        x1 = int(self.t2[0])
+        y1 = int(self.t2[1])
+        self.tablero_oculto[x1][y1] = self.tablero[x1][y1]
+    def validacion_global(self):
+        if self.tablero[int(self.t1[0])][int(self.t1[1])] != self.tablero[int(self.t2[0])][int(self.t2[1])]:
+            self.tablero_oculto[int(self.t1[0])][int(self.t1[1])] = '*'
+            self.tablero_oculto[int(self.t2[0])][int(self.t2[1])] = '*'
+    def get_tablero_oculto(self):
+        return self.tablero_oculto
 
+game = memorama('1')
+lista_conexiones = []
+host = input("Inserte ip: ")
+port = int(input("Inserte el puerto: "))
+os.system('cls')
+data = ''
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print ("Socket Created")
+sock.bind((host, port))
+print ("socket bind complete")
+sock.listen(2)
+print ("socket now listening")
 
+def actualizar(lista_conexiones,game):
+    t = game.get_tablero_oculto()
+    text = t.__str__().replace('], [','\n').replace('[[','').replace(']]','')
+    text = text + '\n-------------------------------\n'
+    for conn in lista_conexiones:
+        conn.send(text.encode('utf8'))
 
-if __name__ == "__main__":
-    HOST = input("Insertar IP del servidor: ")
-    PORT = int(input("Inserte el PUERTO: "))
-    buffer_size = 8
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as serverSocket:
-        serverSocket.bind((HOST, PORT))
+def cliente(*args):
+    conn = args[0]
+    addr = args[1]
+    game = args[2]    
+    try:
+        print('conexion con {}.'.format(addr))
+        conn.send("server: Hola jugador".encode('UTF-8'))
+        game.enviar_tablero(conn)
         while True:
-            serverSocket.listen() #Estado SYN RCVD, mensaje SYN, ACK.
-            print("El servidor MEMORAMA está disponible y en espera de solicitudes")
+            data = conn.recv(1024).decode('utf8')
+            game.tirada1(data)
+            actualizar(lista_conexiones,game)
+            data = conn.recv(1024).decode('utf8')
+            game.tirada2(data)
+            actualizar(lista_conexiones,game)
+            game.validacion_global()
+            actualizar(lista_conexiones,game)     
+    finally:
+        conn.close()
 
-            Client_conn, Client_addr = serverSocket.accept() #Estado Established, mensaje SYN, ACK
-            with Client_conn:
-                pc = jugador("pc")
-                player = jugador("player")
-                print("Conectado a", Client_addr)
-                #definiendo dificultad
-                data = Client_conn.recv(1024).decode('utf8') 
-                #Creando juego
-                game = memorama(data)
-                #game.mostrar_tablero()
-                i = 1
-                while game.cont:
-                    i = 1 - i
-                    if i == 0:
-                        #TIRA EL JUGADOR
-                        print('jugador: {}'.format(player.puntos))
-                        game.turno_jugador(Client_conn,player)
-                    else:
-                        #TIRA LA PC
-                        print('pc: {}'.format(pc.puntos))
-                        game.tirada_pc(pc, Client_conn)
-                if player.puntos > pc.puntos:
-                    Client_conn.send('1'.encode('utf8'))
-                else:
-                    Client_conn.send('2'.encode('utf8'))
+while 1:
+    conn, addr = sock.accept()
+    lista_conexiones.append(conn)
+    threading.Thread(target=cliente, args=(conn, addr,game)).start()

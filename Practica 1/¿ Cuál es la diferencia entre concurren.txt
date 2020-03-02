@@ -1,0 +1,12 @@
+¿ Cuál es la diferencia entre concurrencia y paralelismo?
+
+Razones para usar concurrencia:
+    ->  Tareas intensivas para el CPU: Acelerar algoritmos ejecutando partes en paralelo
+    ->  Entrada/Salida: Otras partes del programa pueden funcionar mientras se espera una entrada o salida.
+    ->  Reactividad: Mientras una una aplicación GUI ejecuta algunas operaciones largas, la aplicacion
+        deberia seguir aceptando la interacción del usuario en esta.
+
+Concurrencia: Hay una multiple ejecución de hilos, pero estós no se deben procesar al mismo tiempo.
+Primero se ejecuta uno, luego antes de que termine cambia a otro, se ejecuta un poco y luego cambia a otro hilo
+Paralelismo: Al igual que en la concurrencia existe la ejecución de los procesos hilos sucede al mismo
+tiempo de manera paralela(por ejemplo en diferentes nucleos del CPU).
