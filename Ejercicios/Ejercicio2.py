@@ -1,4 +1,4 @@
-#servidor
+#servidor Ejercicio 2
 import socket
 import threading
 import random
