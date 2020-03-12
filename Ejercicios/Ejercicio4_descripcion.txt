@@ -1,0 +1,19 @@
+Taller de costura.
+Persona 1.- Fabricación de mangas
+Deposita las mangas fabricadas dentro de un cesto,
+cuando se llena, la costurera deja de coser hasta
+que haga espacio.
+
+Persona 2.- Fabricación de cuerpo
+Deposita el cuerpo de la prenda en su respectiva
+canasta, caundo se llena deja de coser hasta
+que haya espacio.
+
+Persona 3.- Ensamble de la prenda
+Toma dos mangas de la cesta de mangas y un
+cuerpo de la cesta de cuerpos
+
+Implementar un código que sincronice a las 3 personas
+de forma que las dos primeras no avancen si su cesta
+está llena y que la tercer persona no avance si
+le faltan piezas para hacer la nueva prenda.
