@@ -1,0 +1,71 @@
+<documento_xml>
+<metodos_request>
+    <metodo>
+        <nombre_metodo>connection.suma</nombre_metodo>
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+    </metodo>
+    <metodo>
+        <nombre_metodo>connection.resta</nombre_metodo>
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+    </metodo>
+    <metodo>
+        <nombre_metodo>connection.multiplicacion</nombre_metodo>
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+    </metodo>
+    <metodo>
+        <nombre_metodo>connection.division</nombre_metodo>
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+    </metodo>
+</metodos_request>
+
+<metodos_return>
+    <metodo nombre="suma">
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+        <return>
+            <double>num1 + num2</double>
+        </return>
+    </metodo>
+    <metodo nombre="resta">
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+        <return>
+            <double>num1 - num2</double>
+        </return>
+    </metodo>
+    <metodo nombre="multiplicacion">
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+        <return>
+            <double>num1 * num2</double>
+        </return>
+    </metodo>
+    <metodo nombre="division">
+        <parametros>
+            <parametro><double>num1</double></parametro>
+            <parametro><double>num2</double></parametro>
+        </parametros>
+        <return>
+            <double>num1 / num2</double>
+        </return>
+    </metodo>
+</metodos_return>
+</documento_xml>
