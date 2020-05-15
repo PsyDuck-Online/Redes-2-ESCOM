@@ -15,8 +15,8 @@ while True:
         break
     else:
         print('---INTRODUZCA LOS NUMEROS---')
-        num1 = int(input('num1 = '))
-        num2 = int(input('num2 = '))
+        num1 = float(input('num1 = '))
+        num2 = float(input('num2 = '))
         if op == '1':
             signo = '+'
             r = connection.suma(num1,num2)

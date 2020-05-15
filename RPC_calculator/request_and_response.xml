@@ -1,71 +1,158 @@
 <documento_xml>
-<metodos_request>
-    <metodo>
-        <nombre_metodo>connection.suma</nombre_metodo>
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-    </metodo>
-    <metodo>
-        <nombre_metodo>connection.resta</nombre_metodo>
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-    </metodo>
-    <metodo>
-        <nombre_metodo>connection.multiplicacion</nombre_metodo>
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-    </metodo>
-    <metodo>
-        <nombre_metodo>connection.division</nombre_metodo>
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-    </metodo>
-</metodos_request>
+    <data_types>
+        <categoria title="cadena">
+            <data_type>
+                <name>string</name>
+                <description>secuencia de longitud finita de caracteres</description>
+            </data_type>
+            <data_type>
+                <name>anyURI</name>
+                <description>una uri estándar de Internet</description>
+            </data_type>
+            <data_type>
+                <name>NOTATION</name>
+                <description>declara enlaces a contenido externo no-XML</description>
+            </data_type>
+            <data_type>
+                <name>Qname</name>
+                <description>una cadena legal Qname (nombre con cualificador)</description>
+            </data_type>
+        </categoria>
+        <categoria title="binario codificado">
+            <data_type>
+                <name>boolean</name>
+                <description>toma los valores “true” o “false”</description>
+            </data_type>
+            <data_type>
+                <name>hexBinary</name>
+                <description>dato binario codificado como una serie de pares de dígitos hexadecimales</description>
+            </data_type>
+            <data_type>
+                <name>base64Binary</name>
+                <description>datos binarios codificados en base 64</description>
+            </data_type>
+        </categoria>
+        <categoria title="numericos">
+            <data_type>
+                <name>double</name>
+                <description>número de punto flotante de 64 bits de doble precisión</description>
+            </data_type>
+            <data_type>
+                <name>decimal</name>
+                <description>número decimal de precisión (dígitos significativos) arbitraria</description>
+            </data_type>
+            <data_type>
+                <name>float</name>
+                <description>número de punto flotante de 32 bits de precisión simple</description>
+            </data_type>
+        </categoria> 
+        <categoria title="fecha/hora">
+            <data_type>
+                <name>duration</name>
+                <description>duración de tiempo</description>
+            </data_type>
+            <data_type>
+                <name>dateTime</name>
+                <description>instante de tiempo específico, usando calendario gregoriano, en formato "YYYYMM-DDThh:mm:ss</description>
+            </data_type>
+            <data_type>
+                <name>date</name>
+                <description>fecha específica del calendario gregoriano, en formato "YYYY-MM-DD</description>
+            </data_type>
+            <data_type>
+                <name>time</name>
+                <description>una instancia de tiempo que ocurre cada día, en formato "hh:mm:ss</description>
+            </data_type>
+            <data_type>
+                <name>gYearMonth</name>
+                <description>un año y mes del calendario gregoriano</description>
+            </data_type>
+            <data_type>
+                <name>gYear</name>
+                <description>año del calendario gregoriano</description>
+            </data_type>
+            <data_type>
+                <name>gMonthDay</name>
+                <description>día y mes del calendario gregoriano</description>
+            </data_type>
+            <data_type>
+                <name>gMonth</name>
+                <description>un mes del calendario gregoriano</description>
+            </data_type>
+            <data_type>
+                <name>gDay</name>
+                <description>una fecha del calendario gregoriano (día)</description>
+            </data_type>
+        </categoria> 
+    </data_types>
 
-<metodos_return>
-    <metodo nombre="suma">
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-        <return>
-            <double>num1 + num2</double>
-        </return>
-    </metodo>
-    <metodo nombre="resta">
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-        <return>
-            <double>num1 - num2</double>
-        </return>
-    </metodo>
-    <metodo nombre="multiplicacion">
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-        <return>
-            <double>num1 * num2</double>
-        </return>
-    </metodo>
-    <metodo nombre="division">
-        <parametros>
-            <parametro><double>num1</double></parametro>
-            <parametro><double>num2</double></parametro>
-        </parametros>
-        <return>
-            <double>num1 / num2</double>
-        </return>
-    </metodo>
-</metodos_return>
+    <metodos_request>
+        <metodo>
+            <nombre_metodo>connection.suma</nombre_metodo>
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+        </metodo>
+        <metodo>
+            <nombre_metodo>connection.resta</nombre_metodo>
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+        </metodo>
+        <metodo>
+            <nombre_metodo>connection.multiplicacion</nombre_metodo>
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+        </metodo>
+        <metodo>
+            <nombre_metodo>connection.division</nombre_metodo>
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+        </metodo>
+    </metodos_request>
+
+    <metodos_return>
+        <metodo nombre="suma">
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+            <return>
+                <double>num1 + num2</double>
+            </return>
+        </metodo>
+        <metodo nombre="resta">
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+            <return>
+                <double>num1 - num2</double>
+            </return>
+        </metodo>
+        <metodo nombre="multiplicacion">
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+            <return>
+                <double>num1 * num2</double>
+            </return>
+        </metodo>
+        <metodo nombre="division">
+            <parametros>
+                <parametro><double>num1</double></parametro>
+                <parametro><double>num2</double></parametro>
+            </parametros>
+            <return>
+                <double>num1 / num2</double>
+            </return>
+        </metodo>
+    </metodos_return>
 </documento_xml>
